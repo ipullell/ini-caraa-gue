@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17Agustus2025</title>
+    <style>
+        *, html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: pink;
+            overflow-x: hidden;
+        }
+
+        #myHeader {
+            background-color: #eaeaea;
+            padding: 15px;
+            box-sizing: border-box;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .frist-name {
+            color: black;
+            text-transform: capitalize;
+            font-style: italic;
+            font-variant: small-caps;
+        }
+
+        .last-name {
+            color: rgb(27, 27, 27);
+            margin-left: 5px;
+            font-style: italic;
+            text-transform: capitalize;
+            font-variant: small-caps;
+        }
+
+        .frist-name:hover, .last-name:hover {
+            color: rgb(224, 0, 228);
+            transition: ease-in-out .5s;
+            cursor: pointer;
+            transform: rotate(2deg);
+        }
+
+        .box {
+            background-color: #eaeaea;
+            margin: auto;
+            margin-top: 8%;
+            text-align: center;
+            height: 300px;
+            max-width: 50%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px black;
+            padding: 20px;
+        }
+
+        .text-box {
+            background-color: pink;
+            color: black;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px black;
+        }
+
+        input {
+            margin-top: 60px;
+            font-size: medium;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+
+        button {
+            border: none;
+            height: 40px;
+            width: 100px;
+            margin-top: 20px;
+            background-color: #eaeaea;
+            border-radius: 10px;
+            color: black;
+            font-size: 20px;
+            transition: all .5s ease-in-out ;
+        }
+
+        button:hover {
+            background-color: rgb(56, 56, 56);
+            color: #eaeaea;
+            cursor: pointer;
+        }
+
+        .heart {
+            position: fixed;
+            top: -20px;
+            animation: fall linear forwards;
+            z-index: 9999;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                background-color: rgb(255, 144, 248);
+                overflow-x: hidden;
+            }
+
+            .box {
+                background-color: #ffffff;
+                margin: auto;
+                margin-top: 8%;
+                text-align: center;
+                height: 300px;
+                max-width: 90%;
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px black;
+                padding: 20px;
+            }
+
+            .text-box {
+                background-color: rgb(255, 144, 248);
+                color: black;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 2px 2px 5px black;
+            }
+
+            .frist-name {
+                color: black;
+                text-transform: capitalize;
+                font-style: italic;
+                font-variant: small-caps;
+            }
+
+            .last-name {
+                color: rgb(27, 27, 27);
+                margin-left: 5px;
+                font-style: italic;
+                text-transform: capitalize;
+                font-variant: small-caps;
+            }
+
+            .frist-name:hover, .last-name:hover {
+                color: rgb(224, 0, 228);
+                transition: ease-in-out .5s;
+                cursor: pointer;
+                transform: rotate(2deg);
+            }
+
+            button {
+            border: none;
+            height: 40px;
+            width: 100px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            color: black;
+            font-size: 20px;
+            transition: all .5s ease-in-out ;
+            }
+
+            button:hover {
+                background-color: rgb(56, 56, 56);
+                color: white;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <header id="myHeader">
+        <h2 class="frist-name">icull</h2>
+        <h2 class="last-name">hengker</h2>
+    </header>
+
+    <!-- MAIN -->
+    <div class="box" id="box">
+        <h2 class="text-box">Semoga Beruntung</h2>
+        <form id="form">
+            <input id="namaInput" type="text" placeholder="Tulis Nama Kamu">
+        </form>
+        <button id="submit-Btn">Submit</button>
+    </div>
+
+    <!-- LOGIKA -->
+    <script>
+    const btn = document.getElementById('submit-Btn');
+    const input = document.getElementById('namaInput');
+    const body = document.body;
+    const box = document.getElementById('box');
+
+    function buatLove() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤';
+
+        heart.style.left = Math.random() * 90 + 'vw';
+        const size = Math.random() * 20 + 10;
+        heart.style.fontSize = size + 'px';
+
+        const colors = ['#ff4d6d', '#ff99ac', '#ff1744', '#f50057', '#e91e63', '#ff80ab', '#ff4081'];
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+
+    // Fungsi ngetik huruf demi huruf
+    function typeWriter(element, text, speed, callback) {
+        let i = 0;
+        function ketik() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(ketik, speed);
+            } else if (callback) {
+                callback();
+            }
+        }
+        ketik();
+    }
+
+            btn.addEventListener('click', () => {
+        const nama = input.value.trim().toLowerCase();
+        if (nama === 'zahra annisa') {
+            // bikin box transparan, bukan di-hide
+            box.style.background = "transparent";
+            box.style.boxShadow = "none";
+            box.style.height = "auto";
+            box.style.maxWidth = "90%";
+            box.style.marginTop = "20px";
+            box.style.borderRadius = "0";
+
+            body.style.backgroundColor = '#111';
+            document.getElementById("myHeader").style.display = "none";
+
+            box.innerHTML = `
+                <h2 id="typingText" style="color:white; font-size:18px; text-align:center; white-space:pre-line;"></h2>
+                <audio autoplay loop>
+                    <source src="sound.mp3" type="audio/mpeg">
+                    Browser tidak mendukung audio.
+                </audio>
+            `;
+
+            // text yang mau diketik
+            const pesan = 'Haii, allow cacaa cantikk makasih yaa udah mau deket sama aku lagi🤗 emm maaf yaa dulu sempat ngecewain kamu, tapi sekarang gabakal lagi ko ,oiyaaa meskipun telat aku tetap mau bilang Happy Birthday yaa! 🎉🤗 Semoga kamu selalu sehat, bahagia, dikelilingi orang baik, dan semua yang kamu cita-citain tercapai. tetap jadi icaa yg slalu nutup auratnyaa, jangan suka insinyurr kmu ituu cantik, baik, dan selalu bikin org lainn nyaman💖 Love youu☺️';
+            const typingElement = document.getElementById("typingText");
+
+            typeWriter(typingElement, pesan, 50);
+
+            // hujan love
+            setInterval(buatLove, 200);
+        } else {
+            alert('Gagal? wkwk Web ini Bukan Buat lu!');
+        }
+    });
+    </script>
+</body>
+</html>
